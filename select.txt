@@ -1,0 +1,37 @@
+SELECT count(*) FROM `fund_2016_pla`
+where a_prop2_863 is not NULL
+or a_prop2_973 is not NULL
+or a_prop2_bw is not NULL
+or a_prop2_bw_kj is not NULL
+or a_prop2_c is not NULL
+or a_prop2_hk is not NULL
+or a_prop2_jyb is not NULL
+or a_prop2_nsfc is not NULL
+or a_prop2_pd is not NULL
+or a_prop2_pla is not NULL
+or a_prop2_rsb is not NULL
+or a_prop2_s is not NULL
+or a_prop2_w is not NULL
+or a_prop2_zky is not NULL
+or a_prop2_labk is not NULL
+or a_prop2_labz is not NULL
+;
+
+SELECT * FROM `fund_2016_pla`
+where a_prop2_863 is NULL
+and a_prop2_973 is NULL
+and a_prop2_bw is NULL
+and a_prop2_bw_kj is NULL
+and a_prop2_c is NULL
+and a_prop2_hk is NULL
+and a_prop2_jyb is NULL
+and a_prop2_nsfc is NULL
+and a_prop2_pd is NULL
+and a_prop2_pla is NULL
+and a_prop2_rsb is NULL
+and a_prop2_s is NULL
+and a_prop2_w is NULL
+and a_prop2_zky is NULL
+and a_prop2_labk is NULL
+and a_prop2_labz is NULL
+;
