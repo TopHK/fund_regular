@@ -670,6 +670,32 @@ def regular_S_by_keywords3():
     db.close()
 
 
+def regular_S_by_keywords4():
+    [db, cur] = MySQLdb_Connect("localhost", "root", "12345", "fund_2015")
+    province_name_list = ["taiwan"]
+
+    cur.execute("select ID,fund_name from fund_2016_pla where a_prop2_s is not NULL")
+    db.commit()
+
+    count = 0
+    for row in cur.fetchall():
+        ID = row[0]
+        fund_name = row[1]
+        if fund_name is None:
+            continue
+        fund_name = fund_name.strip()
+
+        if str_contains_one_keyword(fund_name, province_name_list):
+            count += 1
+            print(fund_name)
+            cur.execute("update fund_2016_pla set a_prop2_s=null where ID='%d'" % ID)
+            db.commit()
+            if count % 100 == 0:
+                print("TW:%d" % count)
+    print(count)
+    db.close()
+
+
 def regular_pd_by_keywords():
     [db, cur] = MySQLdb_Connect("localhost", "root", "12345", "fund_2015")
     # get jyb fund name in table sci_gf_fund_1015
@@ -1084,11 +1110,176 @@ def regular_labz_by_keywords():
     db.close()
 
 
+def regular_tw_by_keywords():
+    [db, cur] = MySQLdb_Connect("localhost", "root", "12345", "fund_2015")
+    # get jyb fund name in table sci_gf_fund_1015
+    cur.execute("select fund_name from sci_gf_fund_1015 where a_prop2='TW'")
+    db.commit()
+    fund_name_list = list()
+    for row in cur.fetchall():
+        temp_str = row[0].strip()
+        if temp_str and len(temp_str) >= 2:
+            fund_name_list.append(row[0].strip())
+
+    cur.execute("select ID,fund_name from fund_2016_pla where a_prop2_tw is NULL")
+    db.commit()
+
+    count = 0
+    for row in cur.fetchall():
+        ID = row[0]
+        fund_name = row[1]
+        if fund_name is None:
+            continue
+        fund_name = fund_name.strip()
+
+        if str_equals_one_keyword(fund_name, fund_name_list):
+            count += 1
+            # print(fund_name)
+            cur.execute("update fund_2016_pla set a_prop2_tw='TW' where ID='%d'" % ID)
+            db.commit()
+            if count % 50 == 0:
+                print("TW:%d" % count)
+    print(count)
+    db.close()
+
+
+def regular_ma_by_keywords():
+    [db, cur] = MySQLdb_Connect("localhost", "root", "12345", "fund_2015")
+    # get jyb fund name in table sci_gf_fund_1015
+    cur.execute("select fund_name from sci_gf_fund_1015 where a_prop2='MA'")
+    db.commit()
+    fund_name_list = list()
+    for row in cur.fetchall():
+        temp_str = row[0].strip()
+        if temp_str and len(temp_str) >= 2:
+            fund_name_list.append(row[0].strip())
+
+    cur.execute("select ID,fund_name from fund_2016_pla where a_prop2_ma is NULL")
+    db.commit()
+
+    count = 0
+    for row in cur.fetchall():
+        ID = row[0]
+        fund_name = row[1]
+        if fund_name is None:
+            continue
+        fund_name = fund_name.strip()
+
+        if str_equals_one_keyword(fund_name, fund_name_list):
+            count += 1
+            # print(fund_name)
+            cur.execute("update fund_2016_pla set a_prop2_ma='MA' where ID='%d'" % ID)
+            db.commit()
+            if count % 50 == 0:
+                print("MA:%d" % count)
+    print(count)
+    db.close()
+
+
+def regular_sk_by_keywords():
+    [db, cur] = MySQLdb_Connect("localhost", "root", "12345", "fund_2015")
+    # get jyb fund name in table sci_gf_fund_1015
+    cur.execute("select fund_name from sci_gf_fund_1015 where a_prop2='SK'")
+    db.commit()
+    fund_name_list = list()
+    for row in cur.fetchall():
+        temp_str = row[0].strip()
+        if temp_str and len(temp_str) >= 2:
+            fund_name_list.append(row[0].strip())
+
+    cur.execute("select ID,fund_name from fund_2016_pla where a_prop2_sk is NULL")
+    db.commit()
+
+    count = 0
+    for row in cur.fetchall():
+        ID = row[0]
+        fund_name = row[1]
+        if fund_name is None:
+            continue
+        fund_name = fund_name.strip()
+
+        if str_equals_one_keyword(fund_name, fund_name_list):
+            count += 1
+            # print(fund_name)
+            cur.execute("update fund_2016_pla set a_prop2_sk='SK' where ID='%d'" % ID)
+            db.commit()
+            if count % 50 == 0:
+                print("SK:%d" % count)
+    print(count)
+    db.close()
+
+
+def regular_lh_by_keywords():
+    [db, cur] = MySQLdb_Connect("localhost", "root", "12345", "fund_2015")
+    # get jyb fund name in table sci_gf_fund_1015
+    cur.execute("select fund_name from sci_gf_fund_1015 where a_prop2='LH'")
+    db.commit()
+    fund_name_list = list()
+    for row in cur.fetchall():
+        temp_str = row[0].strip()
+        if temp_str and len(temp_str) >= 2:
+            fund_name_list.append(row[0].strip())
+
+    cur.execute("select ID,fund_name from fund_2016_pla where a_prop2_lh is NULL")
+    db.commit()
+
+    count = 0
+    for row in cur.fetchall():
+        ID = row[0]
+        fund_name = row[1]
+        if fund_name is None:
+            continue
+        fund_name = fund_name.strip()
+
+        if str_equals_one_keyword(fund_name, fund_name_list):
+            count += 1
+            # print(fund_name)
+            cur.execute("update fund_2016_pla set a_prop2_lh='LH' where ID='%d'" % ID)
+            db.commit()
+            if count % 50 == 0:
+                print("LH:%d" % count)
+    print(count)
+    db.close()
+
+
+def regular_yjy_by_keywords():
+    [db, cur] = MySQLdb_Connect("localhost", "root", "12345", "fund_2015")
+    # get jyb fund name in table sci_gf_fund_1015
+    cur.execute("select fund_name from sci_gf_fund_1015 where a_prop2='YJY'")
+    db.commit()
+    fund_name_list = list()
+    for row in cur.fetchall():
+        temp_str = row[0].strip()
+        if temp_str and len(temp_str) >= 2:
+            fund_name_list.append(row[0].strip())
+
+    cur.execute("select ID,fund_name from fund_2016_pla where a_prop2_yjy is NULL")
+    db.commit()
+
+    count = 0
+    for row in cur.fetchall():
+        ID = row[0]
+        fund_name = row[1]
+        if fund_name is None:
+            continue
+        fund_name = fund_name.strip()
+
+        if str_equals_one_keyword(fund_name, fund_name_list):
+            count += 1
+            # print(fund_name)
+            cur.execute("update fund_2016_pla set a_prop2_yjy='YJY' where ID='%d'" % ID)
+            db.commit()
+            if count % 50 == 0:
+                print("YJY:%d" % count)
+    print(count)
+    db.close()
+
+
 def regular_combine():
     [db, cur] = MySQLdb_Connect("localhost", "root", "12345", "fund_2015")
     cur.execute("select ID,a_prop2_nsfc,a_prop2_973,a_prop2_863,a_prop2_zky,a_prop2_pla,a_prop2_hk,"
                 "a_prop2_jyb,a_prop2_s,a_prop2_pd,a_prop2_rsb,a_prop2_bw,a_prop2_bw_kj,a_prop2_w,"
-                "a_prop2_c,a_prop2_labk,a_prop2_labz"
+                "a_prop2_c,a_prop2_labk,a_prop2_labz,a_prop2_tw,a_prop2_ma,a_prop2_sk,a_prop2_lh,a_prop2_yjy"
                 " from fund_2016_pla")
     db.commit()
 
@@ -1112,9 +1303,20 @@ def regular_combine():
         a_prop2_c = row[14]
         a_prop2_labk = row[15]
         a_prop2_labz = row[16]
+        a_prop2_tw = row[17]
+        a_prop2_ma = row[18]
+        a_prop2_sk = row[19]
+        a_prop2_lh = row[20]
+        a_prop2_yjy = row[21]
 
+        if a_prop2_lh is not None:
+            combine_result.append(a_prop2_lh)
+        if a_prop2_yjy is not None:
+            combine_result.append(a_prop2_yjy)
         if a_prop2_pd is not None:
             combine_result.append(a_prop2_pd)
+        if a_prop2_w is not None:
+            combine_result.append(a_prop2_w)
         if a_prop2_c is not None:
             combine_result.append(a_prop2_c)
         if a_prop2_rsb is not None:
@@ -1127,8 +1329,18 @@ def regular_combine():
             combine_result.append(a_prop2_labk)
         if a_prop2_labz is not None:
             combine_result.append(a_prop2_labz)
+        if a_prop2_sk is not None:
+            combine_result.append(a_prop2_sk)
+        if a_prop2_zky is not None:
+            combine_result.append(a_prop2_zky)
+        if a_prop2_tw is not None:
+            combine_result.append(a_prop2_tw)
+        if a_prop2_ma is not None:
+            combine_result.append(a_prop2_ma)
         if a_prop2_hk is not None:
             combine_result.append(a_prop2_hk)
+        if a_prop2_s is not None:
+            combine_result.append(a_prop2_s)
         if a_prop2_jyb is not None:
             combine_result.append(a_prop2_jyb)
         if a_prop2_pla is not None:
@@ -1137,14 +1349,9 @@ def regular_combine():
             combine_result.append(a_prop2_973)
         if a_prop2_863 is not None:
             combine_result.append(a_prop2_863)
-        if a_prop2_zky is not None:
-            combine_result.append(a_prop2_zky)
-        if a_prop2_s is not None:
-            combine_result.append(a_prop2_s)
         if a_prop2_nsfc is not None:
             combine_result.append(a_prop2_nsfc)
-        if a_prop2_w is not None:
-            combine_result.append(a_prop2_w)
+
         count += 1
         if len(combine_result) >= 1:
             combine_result_str = ";".join(combine_result)
@@ -1230,6 +1437,7 @@ def main():
     # regular_S_by_keywords()
     # regular_S_by_keywords2()
     # regular_S_by_keywords3()
+    # regular_S_by_keywords4()
 
     # regular_pd_by_keywords()
 
@@ -1263,9 +1471,14 @@ def main():
     # regular_labk_by_keywords()
     # regular_labz_by_keywords()
 
-    # regular_combine()
-
+    # regular_tw_by_keywords()
+    # regular_ma_by_keywords()
+    # regular_sk_by_keywords()
+    # regular_lh_by_keywords()
+    # regular_yjy_by_keywords()
+    regular_combine()
     regular_compare()
+
 
 
 if __name__ == '__main__':
